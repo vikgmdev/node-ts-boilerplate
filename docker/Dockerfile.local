@@ -1,0 +1,8 @@
+#Dockerfile for Development and Testing Environment
+#This file should not be used for production
+FROM node:14.17-alpine3.13
+RUN apk add --no-cache tini bash
+RUN npm install -g pino-pretty
+WORKDIR /root/app
+ENTRYPOINT ["/sbin/tini", "--"]
+CMD npm run start

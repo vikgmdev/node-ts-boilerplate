@@ -1,0 +1,21 @@
+#Dockerfile for Development and Testing Environment
+#This file should not be used for production
+version: '3'
+services:
+  ntsb:
+    container_name: ntsb-${VERSION}
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.local
+    environment:
+      APP_ID: node-ts-boilerplate
+      CORS_ORIGINS: '.*'
+      LOG_LEVEL: debug
+    ports:
+      - 4000:4000
+    volumes:
+      - ../:/root/app
+networks:
+  default:
+    external:
+      name: local-network
